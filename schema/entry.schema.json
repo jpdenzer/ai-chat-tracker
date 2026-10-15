@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/OWNER/ai-chat-anomaly-log/schema/entry.schema.json",
+  "$id": "https://github.com/jpdenzer/ai-chat-tracker/schema/entry.schema.json",
   "title": "AI Chat Anomaly Log entry",
   "description": "GENERATED from schema/options.json by `npm run generate`. Do not edit by hand. One incident per file at data/entries/<id>.json.",
   "type": "object",

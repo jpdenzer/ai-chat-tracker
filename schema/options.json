@@ -2,7 +2,7 @@
   "$comment": "Single source of truth for every dropdown list, its definitions, and the field list. After editing, run `npm run generate` to update the JSON Schema, issue template, and docs tables.",
   "project": {
     "name": "AI Chat Anomaly Log",
-    "repository": "OWNER/ai-chat-anomaly-log",
+    "repository": "jpdenzer/ai-chat-tracker",
     "issue_template": "chat-incident.yml",
     "issue_title_prefix": "[Incident]",
     "submission_label": "submission",

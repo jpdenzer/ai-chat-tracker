@@ -1,5 +1,5 @@
 {
-  "name": "ai-chat-anomaly-log",
+  "name": "ai-chat-tracker",
   "version": "1.0.0",
   "private": true,
   "description": "A public, community-contributed log of odd or inconsistent AI assistant behavior.",

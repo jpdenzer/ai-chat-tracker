@@ -2,7 +2,7 @@
 
 A public, community-contributed log of odd or inconsistent AI assistant behavior: instruction drift, fabrication, odd refusals, self-contradiction, caving under pushback, and identity or tone oddities. One row per incident, reviewed by maintainers before publication.
 
-**Live site:** https://OWNER.github.io/ai-chat-anomaly-log/ *(placeholder)*
+**Live site:** https://jpdenzer.github.io/ai-chat-tracker/ *(available once Pages is enabled)*
 
 > [!WARNING]
 > **Privacy.** Do not submit personal data, confidential or proprietary material, credentials, or other people's private information. Redact before submitting. Everything you submit is public.
