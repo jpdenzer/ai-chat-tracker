@@ -1,0 +1,26 @@
+{
+  "name": "ai-chat-anomaly-log",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A public, community-contributed log of odd or inconsistent AI assistant behavior.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "generate": "node scripts/generate.js",
+    "generate:check": "node scripts/generate.js --check",
+    "validate": "node scripts/validate.js",
+    "build:data": "node scripts/build-data.js",
+    "build": "node scripts/generate.js --check && node scripts/build-data.js && node scripts/build-site.js",
+    "build:local": "node scripts/build-data.js --with-examples && node scripts/build-site.js",
+    "serve": "npm run build:local && node scripts/serve.js",
+    "new-entry": "node scripts/new-entry.js",
+    "test": "node --test test/ && node scripts/validate.js"
+  },
+  "dependencies": {
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "js-yaml": "4.1.0"
+  }
+}

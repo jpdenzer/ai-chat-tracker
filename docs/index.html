@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>AI Chat Anomaly Log</title>
+<meta name="description" content="A public, community-contributed log of odd or inconsistent AI assistant behavior.">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/theme-init.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="inner">
+  <a class="brand" href="./">AI Chat Anomaly Log</a>
+  <nav class="site-nav" aria-label="Main"><ul>
+    <li><a href="./" aria-current="page">Home</a></li>
+    <li><a href="browse.html">Browse</a></li>
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="contribute.html">Contribute</a></li>
+  </ul></nav>
+  <button type="button" class="theme-toggle">Theme: auto</button>
+</div></header>
+
+<main id="main">
+  <h1>AI Chat Anomaly Log</h1>
+  <p class="lede">A public, community-contributed log of odd or inconsistent behavior by AI assistants: instruction drift, fabrication, odd refusals, self-contradiction, caving under pushback, and identity or tone oddities. One row per incident.</p>
+
+  <div class="callout warn" role="note">
+    <p><strong>Privacy:</strong> Do not submit personal data, confidential or proprietary material, credentials, or other people's private information. Redact before submitting. Every submission is public.</p>
+  </div>
+
+  <p class="prose">Entries are <strong>reports of observed behavior</strong> submitted by individuals. They are not verified claims about any vendor's product, and a single report says nothing about how often a behavior occurs. Maintainers review each submission for format, privacy, and tone before it appears in the log.</p>
+
+  <div class="cards">
+    <section class="card">
+      <h2 class="h3">Browse the log</h2>
+      <p>Filter and sort incidents by assistant, behavior type, severity, and date, or download the CSV.</p>
+      <a class="button" href="browse.html">Browse entries</a>
+    </section>
+    <section class="card">
+      <h2 class="h3">Dashboard</h2>
+      <p>Counts by assistant, behavior type, severity, and month.</p>
+      <a class="button" href="dashboard.html">Open dashboard</a>
+    </section>
+    <section class="card">
+      <h2 class="h3">Report an incident</h2>
+      <p>Fill in the web form. It opens a prefilled GitHub issue for maintainer review.</p>
+      <a class="button primary" href="contribute.html">Contribute</a>
+    </section>
+  </div>
+
+  <h2>How to contribute</h2>
+  <ol class="prose">
+    <li><strong>Web form</strong> (easiest): use the <a href="contribute.html">Contribute</a> page. It checks your entry, then opens a prefilled GitHub issue for you to submit. You need a GitHub account.</li>
+    <li><strong>Issue form</strong>: open a <a data-repo-href="/issues/new?template=chat-incident.yml" href="https://github.com/">new “Report an incident” issue</a> directly on GitHub.</li>
+    <li><strong>Pull request</strong>: add one JSON file to <code>data/entries/</code>. See <a data-repo-href="/blob/main/CONTRIBUTING.md" href="https://github.com/">CONTRIBUTING.md</a>. The Contribute page can download a correctly formatted file for you.</li>
+  </ol>
+
+  <h2>Behavior types</h2>
+  <div class="table-wrap"><table>
+    <caption class="visually-hidden">Behavior type definitions</caption>
+    <thead><tr><th scope="col">Type</th><th scope="col">Definition</th></tr></thead>
+    <tbody id="types-body"><tr><td colspan="2" class="muted">Loading…</td></tr></tbody>
+  </table></div>
+
+  <h2>Severity</h2>
+  <div class="table-wrap"><table>
+    <caption class="visually-hidden">Severity definitions</caption>
+    <thead><tr><th scope="col">Severity</th><th scope="col">Definition</th></tr></thead>
+    <tbody id="severity-body"><tr><td colspan="2" class="muted">Loading…</td></tr></tbody>
+  </table></div>
+
+  <h2 id="request-removal">Request removal</h2>
+  <p class="prose">If an entry contains your personal information or should not be public, <a data-repo-href="/issues/new?template=removal-request.yml" href="https://github.com/">open a removal request</a> with the entry id. Don't repeat the sensitive information in the request. If the issue itself would expose something sensitive, use the private reporting route in <a data-repo-href="/blob/main/SECURITY.md" href="https://github.com/">SECURITY.md</a>. Maintainers remove entries promptly.</p>
+
+  <h2>License</h2>
+  <p class="prose">Data (entries, CSV, JSON) is released under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Code is under the MIT License. This site uses no cookies, analytics, or tracking.</p>
+</main>
+
+<footer class="site-footer"><div class="inner">
+  <p>Reports of observed behavior, not verified claims about any vendor's product. · <a data-repo-href="" href="https://github.com/">Source on GitHub</a> · <a data-repo-href="/blob/main/CODE_OF_CONDUCT.md" href="https://github.com/">Code of conduct</a></p>
+</div></footer>
+<script src="assets/common.js"></script>
+<script src="assets/home.js"></script>
+</body>
+</html>

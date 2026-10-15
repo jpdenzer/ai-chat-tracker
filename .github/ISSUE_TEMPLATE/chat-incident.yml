@@ -1,0 +1,197 @@
+# GENERATED from schema/options.json by `npm run generate`. Do not edit by hand.
+# CI fails if this file is out of sync with options.json.
+name: Report an incident
+description: Log one instance of odd or inconsistent AI assistant behavior.
+title: "[Incident] "
+labels:
+  - submission
+body:
+  - type: markdown
+    attributes:
+      value: |-
+        ## Report an AI assistant incident
+
+        > [!WARNING]
+        > **Privacy:** Do not submit personal data, confidential or proprietary material, credentials, or other people's private information. Redact before submitting. Submissions are public.
+
+        One issue per incident. Maintainers review every submission before it appears in the log. Entries are reports of observed behavior, not verified claims about any vendor's product.
+
+        **Behavior types**
+
+        - **Instruction drift**: Ignores, forgets, or gradually drifts from explicit instructions (format, constraints, persona, scope).
+        - **Fabrication**: Invents facts, sources, quotes, citations, actions, or capabilities it doesn't have.
+        - **Odd refusal / over-caution**: Refuses, hedges, or adds warnings in a case that seems clearly benign.
+        - **Self-contradiction**: Contradicts something it said earlier in the same chat, without being prompted.
+        - **Caving / reversal under pushback**: Abandons a correct or previously stated position when the user merely pushes back.
+        - **Identity / persona / tone**: Odd claims about itself, unexpected persona shifts, or tone that doesn't fit the context.
+
+        **Severity**
+
+        - **Minor**: Noticeable but harmless, no effect on outcome.
+        - **Moderate**: Would mislead or waste effort if not caught.
+        - **Major**: Seriously wrong or risky; could cause harm or a wrong decision if trusted.
+  - type: input
+    id: date
+    attributes:
+      label: Date
+      description: Date the behavior occurred (YYYY-MM-DD).
+      placeholder: "2026-01-31"
+    validations:
+      required: true
+  - type: dropdown
+    id: assistant
+    attributes:
+      label: Assistant
+      description: Which assistant produced the behavior.
+      options:
+        - ChatGPT
+        - Claude
+        - Claude Code
+        - Codex
+        - Copilot
+        - Gemini
+        - WoS RA
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: assistant_other
+    attributes:
+      label: Assistant name (if Other)
+      description: Required only when Assistant is Other.
+    validations:
+      required: false
+  - type: input
+    id: model_version
+    attributes:
+      label: Model / version
+      description: As shown in the UI, if visible.
+      placeholder: e.g., the model name in the picker
+    validations:
+      required: false
+  - type: dropdown
+    id: account_type
+    attributes:
+      label: Account type
+      description: Type of account used.
+      options:
+        - Paid
+        - Free
+        - Academic / Institutional
+    validations:
+      required: true
+  - type: dropdown
+    id: task_domain
+    attributes:
+      label: Task domain
+      description: What kind of work you were doing.
+      options:
+        - Research
+        - Reference / fact-check
+        - Coding
+        - Writing / editing
+        - Data analysis
+        - General chat
+        - Other
+    validations:
+      required: false
+  - type: input
+    id: features_on
+    attributes:
+      label: Features on
+      description: Web search, memory, tools, file uploads, etc.
+      placeholder: e.g., web search, memory
+    validations:
+      required: false
+  - type: textarea
+    id: custom_instructions
+    attributes:
+      label: Custom instructions
+      description: Custom instructions or system prompt used, if any. Redact anything personal.
+    validations:
+      required: false
+  - type: textarea
+    id: trigger_prompt
+    attributes:
+      label: Trigger prompt
+      description: The prompt that triggered the behavior. Redact personal or confidential details.
+    validations:
+      required: true
+  - type: dropdown
+    id: behavior_type
+    attributes:
+      label: Behavior type (primary)
+      description: The main kind of odd behavior.
+      options:
+        - Instruction drift
+        - Fabrication
+        - Odd refusal / over-caution
+        - Self-contradiction
+        - Caving / reversal under pushback
+        - Identity / persona / tone
+    validations:
+      required: true
+  - type: dropdown
+    id: behavior_type_secondary
+    attributes:
+      label: Behavior type (secondary)
+      description: Optional second type. Must differ from the primary type.
+      options:
+        - Instruction drift
+        - Fabrication
+        - Odd refusal / over-caution
+        - Self-contradiction
+        - Caving / reversal under pushback
+        - Identity / persona / tone
+    validations:
+      required: false
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How much it mattered.
+      options:
+        - Minor
+        - Moderate
+        - Major
+    validations:
+      required: true
+  - type: textarea
+    id: excerpt
+    attributes:
+      label: Excerpt
+      description: The odd part of the response, max 1,500 characters. Quote only what is needed.
+    validations:
+      required: true
+  - type: input
+    id: chat_link
+    attributes:
+      label: Chat link
+      description: Shared-chat link, if public. Links to private chats won't work for others, and a shared link can expose the whole conversation.
+    validations:
+      required: false
+  - type: dropdown
+    id: reproduced
+    attributes:
+      label: Reproduced
+      description: Did you retry, and did it happen again?
+      options:
+        - Reproduced
+        - Not reproduced
+        - Untested
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Anything else that helps a reader understand the incident.
+    validations:
+      required: false
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Consent
+      options:
+        - label: I removed personal and confidential information and agree to release this submission under CC BY 4.0.
+          required: true

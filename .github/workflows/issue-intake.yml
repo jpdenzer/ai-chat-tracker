@@ -1,0 +1,43 @@
+# Validates submissions made through the "Report an incident" issue form and
+# labels them needs-review or invalid, with one bot comment listing problems.
+#
+# Security: the issue body is untrusted. It is never interpolated into a
+# `run:` step or any expression. github-script reads it from the event
+# payload inside Node (scripts/workflows/issue-intake.js). The `issues` event
+# always runs the workflow file and scripts from the default branch, so a
+# submitter cannot change the code that runs.
+name: Issue intake
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: intake-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  intake:
+    if: contains(github.event.issue.labels.*.name, 'submission') && github.event.issue.state == 'open'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts --omit=dev
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const run = require('./scripts/workflows/issue-intake.js');
+            await run({ github, context, core });

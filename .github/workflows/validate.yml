@@ -1,0 +1,36 @@
+# Validates entries, options, and generated files on every PR and push.
+# Uses `pull_request` (not `pull_request_target`): fork PRs run with a
+# read-only token and no secrets, so untrusted PR code can't do harm.
+name: Validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      # Unit tests, then schema/option/length/duplicate-id validation, then
+      # a check that the schema, issue template, and docs tables match options.json.
+      - run: npm test
+      - name: Build data and site (smoke test)
+        run: npm run build

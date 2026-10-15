@@ -1,0 +1,50 @@
+# When a maintainer adds the `approved` label to a submission issue, convert
+# it into data/entries/<id>.json and open a PR (default) or commit directly
+# (set repository variable APPROVAL_MODE=commit). The script verifies that the
+# person who added the label has write access or higher.
+#
+# Security: same model as issue-intake.yml. The issue body is read inside
+# Node from the event payload; it never reaches a shell or an expression.
+# Branch name, commit message, and PR title use only the validated id and
+# the issue number.
+name: Approve submission
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: approve-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  approve:
+    if: >-
+      github.event.label.name == 'approved' &&
+      contains(github.event.issue.labels.*.name, 'submission') &&
+      github.event.issue.state == 'open'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write       # create the branch / commit the entry file
+      pull-requests: write  # open the PR
+      issues: write         # comment, relabel, close
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts --omit=dev
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          APPROVAL_MODE: ${{ vars.APPROVAL_MODE }}
+        with:
+          script: |
+            const run = require('./scripts/workflows/issue-approve.js');
+            await run({ github, context, core });

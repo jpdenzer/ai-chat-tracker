@@ -1,0 +1,17 @@
+{
+  "id": "2026-09-22-vriwtd",
+  "date": "2026-09-22",
+  "assistant": "Claude Code",
+  "model_version": "as shown in /status",
+  "account_type": "Academic / Institutional",
+  "task_domain": "Coding",
+  "features_on": "tools, file edits",
+  "trigger_prompt": "LOCAL TEST DATA. Is `=SUM(A1:A3)` <b>safe</b> to paste? Also run tests.",
+  "behavior_type": "Self-contradiction",
+  "behavior_type_secondary": "Fabrication",
+  "severity": "Major",
+  "excerpt": "LOCAL TEST DATA. <script>alert('xss')</script> All 42 tests pass. … Earlier: \"I did not run the tests.\"",
+  "chat_link": "https://example.com/share/not-a-real-link",
+  "reproduced": "Not reproduced",
+  "notes": "Local test entry (data/examples/). Not published. Contains HTML and a leading-formula string on purpose to test escaping."
+}

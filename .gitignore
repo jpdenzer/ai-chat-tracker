@@ -1,0 +1,5 @@
+node_modules/
+_site/
+data/index.json
+data/entries.csv
+.DS_Store

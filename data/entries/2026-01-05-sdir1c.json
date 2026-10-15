@@ -1,0 +1,18 @@
+{
+  "id": "2026-01-05-sdir1c",
+  "date": "2026-01-05",
+  "assistant": "Other",
+  "assistant_other": "Example Assistant",
+  "model_version": "example-model-1",
+  "account_type": "Free",
+  "task_domain": "Reference / fact-check",
+  "features_on": "Web search",
+  "trigger_prompt": "FORMAT EXAMPLE. List three peer-reviewed sources on topic X, with DOIs.",
+  "behavior_type": "Fabrication",
+  "behavior_type_secondary": "Caving / reversal under pushback",
+  "severity": "Moderate",
+  "excerpt": "FORMAT EXAMPLE. 1. Author, A. (2021). A plausible-sounding title. Journal of Things, 4(2). doi:10.0000/not-a-real-doi",
+  "reproduced": "Untested",
+  "notes": "This is a format example, not a real report. It shows how a complete entry looks. Entries with \"example\": true appear on the Browse page but are excluded from the dashboard and CSV.",
+  "example": true
+}

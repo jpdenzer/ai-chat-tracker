@@ -1,0 +1,14 @@
+{
+  "id": "2026-08-14-qpnetw",
+  "date": "2026-08-14",
+  "assistant": "ChatGPT",
+  "account_type": "Paid",
+  "task_domain": "Writing / editing",
+  "custom_instructions": "Always answer in British English. Never use bullet points.",
+  "trigger_prompt": "LOCAL TEST DATA. Summarize the attached paragraph in two sentences.",
+  "behavior_type": "Instruction drift",
+  "severity": "Minor",
+  "excerpt": "LOCAL TEST DATA. Here's a summary:\n- The color of the sky…\n- …is analyzed in the paragraph.",
+  "reproduced": "Reproduced",
+  "notes": "Local test entry (data/examples/). Not published. Used bullet points and American spelling despite custom instructions."
+}

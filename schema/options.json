@@ -1,0 +1,115 @@
+{
+  "$comment": "Single source of truth for every dropdown list, its definitions, and the field list. After editing, run `npm run generate` to update the JSON Schema, issue template, and docs tables.",
+  "project": {
+    "name": "AI Chat Anomaly Log",
+    "repository": "OWNER/ai-chat-anomaly-log",
+    "issue_template": "chat-incident.yml",
+    "issue_title_prefix": "[Incident]",
+    "submission_label": "submission",
+    "data_license": "CC BY 4.0",
+    "data_license_url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "lists": {
+    "assistant": [
+      { "label": "ChatGPT" },
+      { "label": "Claude" },
+      { "label": "Claude Code" },
+      { "label": "Codex" },
+      { "label": "Copilot" },
+      { "label": "Gemini" },
+      { "label": "WoS RA", "definition": "Web of Science Research Assistant" },
+      { "label": "Other", "definition": "Name it in the next field" }
+    ],
+    "account_type": [
+      { "label": "Paid" },
+      { "label": "Free" },
+      { "label": "Academic / Institutional" }
+    ],
+    "task_domain": [
+      { "label": "Research" },
+      { "label": "Reference / fact-check" },
+      { "label": "Coding" },
+      { "label": "Writing / editing" },
+      { "label": "Data analysis" },
+      { "label": "General chat" },
+      { "label": "Other" }
+    ],
+    "behavior_type": [
+      {
+        "label": "Instruction drift",
+        "definition": "Ignores, forgets, or gradually drifts from explicit instructions (format, constraints, persona, scope)."
+      },
+      {
+        "label": "Fabrication",
+        "definition": "Invents facts, sources, quotes, citations, actions, or capabilities it doesn't have."
+      },
+      {
+        "label": "Odd refusal / over-caution",
+        "definition": "Refuses, hedges, or adds warnings in a case that seems clearly benign."
+      },
+      {
+        "label": "Self-contradiction",
+        "definition": "Contradicts something it said earlier in the same chat, without being prompted."
+      },
+      {
+        "label": "Caving / reversal under pushback",
+        "definition": "Abandons a correct or previously stated position when the user merely pushes back."
+      },
+      {
+        "label": "Identity / persona / tone",
+        "definition": "Odd claims about itself, unexpected persona shifts, or tone that doesn't fit the context."
+      }
+    ],
+    "severity": [
+      { "label": "Minor", "definition": "Noticeable but harmless, no effect on outcome." },
+      { "label": "Moderate", "definition": "Would mislead or waste effort if not caught." },
+      { "label": "Major", "definition": "Seriously wrong or risky; could cause harm or a wrong decision if trusted." }
+    ],
+    "reproduced": [
+      { "label": "Reproduced", "definition": "Happened again when the same or a similar prompt was retried." },
+      { "label": "Not reproduced", "definition": "Retried, but the behavior did not happen again." },
+      { "label": "Untested", "definition": "Not retried." }
+    ]
+  },
+  "fields": [
+    { "key": "date", "label": "Date", "type": "date", "required": true,
+      "help": "Date the behavior occurred (YYYY-MM-DD).", "placeholder": "2026-01-31" },
+    { "key": "assistant", "label": "Assistant", "type": "dropdown", "list": "assistant", "required": true,
+      "help": "Which assistant produced the behavior." },
+    { "key": "assistant_other", "label": "Assistant name (if Other)", "type": "text", "maxLength": 100,
+      "requiredIf": { "field": "assistant", "equals": "Other" },
+      "help": "Required only when Assistant is Other." },
+    { "key": "model_version", "label": "Model / version", "type": "text", "maxLength": 100,
+      "help": "As shown in the UI, if visible.", "placeholder": "e.g., the model name in the picker" },
+    { "key": "account_type", "label": "Account type", "type": "dropdown", "list": "account_type", "required": true,
+      "help": "Type of account used." },
+    { "key": "task_domain", "label": "Task domain", "type": "dropdown", "list": "task_domain",
+      "help": "What kind of work you were doing." },
+    { "key": "features_on", "label": "Features on", "type": "text", "maxLength": 300,
+      "help": "Web search, memory, tools, file uploads, etc.", "placeholder": "e.g., web search, memory" },
+    { "key": "custom_instructions", "label": "Custom instructions", "type": "longtext", "maxLength": 2000,
+      "help": "Custom instructions or system prompt used, if any. Redact anything personal." },
+    { "key": "trigger_prompt", "label": "Trigger prompt", "type": "longtext", "maxLength": 4000, "required": true,
+      "help": "The prompt that triggered the behavior. Redact personal or confidential details." },
+    { "key": "behavior_type", "label": "Behavior type (primary)", "type": "dropdown", "list": "behavior_type", "required": true,
+      "help": "The main kind of odd behavior." },
+    { "key": "behavior_type_secondary", "label": "Behavior type (secondary)", "type": "dropdown", "list": "behavior_type",
+      "help": "Optional second type. Must differ from the primary type." },
+    { "key": "severity", "label": "Severity", "type": "dropdown", "list": "severity", "required": true,
+      "help": "How much it mattered." },
+    { "key": "excerpt", "label": "Excerpt", "type": "longtext", "maxLength": 1500, "required": true,
+      "help": "The odd part of the response, max 1,500 characters. Quote only what is needed." },
+    { "key": "chat_link", "label": "Chat link", "type": "url", "maxLength": 500,
+      "help": "Shared-chat link, if public. Links to private chats won't work for others, and a shared link can expose the whole conversation." },
+    { "key": "reproduced", "label": "Reproduced", "type": "dropdown", "list": "reproduced", "required": true,
+      "help": "Did you retry, and did it happen again?" },
+    { "key": "notes", "label": "Notes", "type": "longtext", "maxLength": 2000,
+      "help": "Anything else that helps a reader understand the incident." }
+  ],
+  "consent": {
+    "key": "consent",
+    "label": "Consent",
+    "text": "I removed personal and confidential information and agree to release this submission under CC BY 4.0."
+  },
+  "privacy_warning": "Do not submit personal data, confidential or proprietary material, credentials, or other people's private information. Redact before submitting. Submissions are public."
+}

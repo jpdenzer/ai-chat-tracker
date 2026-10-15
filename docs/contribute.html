@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Contribute · AI Chat Anomaly Log</title>
+<meta name="description" content="Report an incident of odd or inconsistent AI assistant behavior.">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/theme-init.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="inner">
+  <a class="brand" href="./">AI Chat Anomaly Log</a>
+  <nav class="site-nav" aria-label="Main"><ul>
+    <li><a href="./">Home</a></li>
+    <li><a href="browse.html">Browse</a></li>
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="contribute.html" aria-current="page">Contribute</a></li>
+  </ul></nav>
+  <button type="button" class="theme-toggle">Theme: auto</button>
+</div></header>
+
+<main id="main">
+  <h1>Report an incident</h1>
+  <p class="lede">One report per incident. When you submit, this page opens a prefilled GitHub issue. You review it there and click <em>Create</em>. Maintainers review every submission before it appears in the log.</p>
+
+  <div class="callout warn" role="note" id="privacy">
+    <h2 class="visually-hidden">Privacy warning</h2>
+    <p><strong>Do not submit personal data, confidential or proprietary material, credentials, or other people's private information.</strong> Redact names, emails, IDs, file paths, internal URLs, and anything you wouldn't post publicly. Issues on GitHub are public as soon as you create them.</p>
+    <p><strong>Chat links are optional.</strong> Links to private chats won't work for anyone else, and a shared link can expose the <em>whole</em> conversation, not just the part you quote.</p>
+  </div>
+
+  <noscript><div class="callout warn"><p>This form needs JavaScript. You can use the <a href="https://github.com/">GitHub issue form</a> directly instead (see the README).</p></div></noscript>
+
+  <div id="error-summary" class="error-summary" tabindex="-1" hidden>
+    <h2>Please fix the following</h2>
+    <ul id="error-list"></ul>
+  </div>
+
+  <form id="entry-form" novalidate>
+    <div class="form-grid" id="fields"><p class="muted">Loading form…</p></div>
+
+    <div class="consent-box" id="consent-wrap"></div>
+
+    <div class="form-actions">
+      <button type="submit" class="primary" id="submit-issue">Open prefilled GitHub issue</button>
+      <button type="button" id="download-json">Download as JSON (for a pull request)</button>
+      <button type="button" id="clear-form">Clear form</button>
+    </div>
+    <p class="muted"><small>Your draft is kept only in this browser tab (session storage) and is never sent anywhere until you submit on GitHub.</small></p>
+  </form>
+
+  <section id="status" class="status" aria-live="polite"></section>
+
+  <h2>Other ways to contribute</h2>
+  <ul class="prose">
+    <li><a data-repo-href="/issues/new?template=chat-incident.yml" href="https://github.com/">Open the issue form on GitHub</a> and fill it in there.</li>
+    <li>Submit a pull request that adds one JSON file to <code>data/entries/</code>. Use “Download as JSON” above to get a correctly formatted file, then follow <a data-repo-href="/blob/main/CONTRIBUTING.md" href="https://github.com/">CONTRIBUTING.md</a>.</li>
+  </ul>
+</main>
+
+<footer class="site-footer"><div class="inner">
+  <p>Submissions are released under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. · <a data-repo-href="/blob/main/CODE_OF_CONDUCT.md" href="https://github.com/">Code of conduct</a></p>
+</div></footer>
+<script src="assets/common.js"></script>
+<script src="assets/entry-core.js"></script>
+<script src="assets/contribute.js"></script>
+</body>
+</html>

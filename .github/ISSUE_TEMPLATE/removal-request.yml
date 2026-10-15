@@ -1,0 +1,36 @@
+name: Request removal
+description: Ask maintainers to remove a published entry.
+title: "[Removal] "
+labels: ["removal-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Do not repeat the sensitive information here.** This issue is public.
+        If even describing the problem would expose something sensitive, use the private route in SECURITY.md instead.
+  - type: input
+    id: entry_id
+    attributes:
+      label: Entry id
+      description: The id shown on the entry (for example 2026-03-14-k3f9qa), or the issue/PR number.
+    validations:
+      required: true
+  - type: dropdown
+    id: reason
+    attributes:
+      label: Reason
+      options:
+        - Contains my personal information
+        - Contains someone else's personal information
+        - Contains confidential or proprietary material
+        - I submitted it and want it withdrawn
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Optional. Describe the problem without quoting the sensitive content.
+    validations:
+      required: false

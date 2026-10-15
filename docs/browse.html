@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Browse · AI Chat Anomaly Log</title>
+<meta name="description" content="Browse, filter, and download reported AI assistant incidents.">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/theme-init.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="inner">
+  <a class="brand" href="./">AI Chat Anomaly Log</a>
+  <nav class="site-nav" aria-label="Main"><ul>
+    <li><a href="./">Home</a></li>
+    <li><a href="browse.html" aria-current="page">Browse</a></li>
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="contribute.html">Contribute</a></li>
+  </ul></nav>
+  <button type="button" class="theme-toggle">Theme: auto</button>
+</div></header>
+
+<main id="main">
+  <h1>Browse entries</h1>
+  <p class="lede">Reports of observed behavior, not verified claims about any vendor's product.</p>
+
+  <form class="filters" id="filters" aria-label="Filter entries" role="search">
+    <div class="wide">
+      <label for="f-q">Search text</label>
+      <input id="f-q" name="q" type="search" placeholder="Words in prompt, excerpt, notes, model…" autocomplete="off">
+    </div>
+    <div><label for="f-assistant">Assistant</label><select id="f-assistant" name="assistant"><option value="">All</option></select></div>
+    <div><label for="f-behavior">Behavior type</label><select id="f-behavior" name="behavior"><option value="">All</option></select></div>
+    <div><label for="f-severity">Severity</label><select id="f-severity" name="severity"><option value="">All</option></select></div>
+    <div><label for="f-account">Account type</label><select id="f-account" name="account"><option value="">All</option></select></div>
+    <div><label for="f-reproduced">Reproduced</label><select id="f-reproduced" name="reproduced"><option value="">All</option></select></div>
+    <div><label for="f-from">From date</label><input id="f-from" name="from" type="date"></div>
+    <div><label for="f-to">To date</label><input id="f-to" name="to" type="date"></div>
+    <div class="actions">
+      <label class="check" for="f-secondary"><input id="f-secondary" name="secondary" type="checkbox" checked> Behavior filter includes secondary type</label>
+      <label class="check" for="f-examples"><input id="f-examples" name="examples" type="checkbox" checked> Show format examples</label>
+      <button type="reset">Clear filters</button>
+    </div>
+  </form>
+
+  <div class="toolbar">
+    <p id="result-count" role="status" aria-live="polite" class="muted">Loading…</p>
+    <div>
+      <a class="button" href="data/entries.csv" download="ai-chat-anomaly-log.csv">Download all (CSV)</a>
+      <button type="button" id="download-filtered">Download filtered (CSV)</button>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table class="entries-table">
+      <caption class="visually-hidden">Incidents. Column headers are buttons that sort the table.</caption>
+      <thead><tr id="head-row"></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  <p class="muted"><small>Data: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. The CSV excludes format examples.</small></p>
+
+  <dialog id="detail" aria-labelledby="detail-title">
+    <div class="dialog-head">
+      <div><h2 id="detail-title">Entry</h2><p class="muted" id="detail-sub"></p></div>
+      <button type="button" id="detail-close" aria-label="Close details">Close</button>
+    </div>
+    <div class="dialog-body"><dl class="detail-list" id="detail-list"></dl></div>
+  </dialog>
+</main>
+
+<footer class="site-footer"><div class="inner">
+  <p>To request removal of an entry, see <a href="./#request-removal">Request removal</a>. · <a data-repo-href="" href="https://github.com/">Source on GitHub</a></p>
+</div></footer>
+<script src="assets/common.js"></script>
+<script src="assets/entry-core.js"></script>
+<script src="assets/browse.js"></script>
+</body>
+</html>

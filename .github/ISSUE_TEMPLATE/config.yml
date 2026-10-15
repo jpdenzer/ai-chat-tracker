@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report sensitive data privately
+    url: https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing-information-about-vulnerabilities/privately-reporting-a-security-vulnerability
+    about: If a published entry exposes sensitive information, report it privately (see SECURITY.md) instead of opening a public issue.

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Dashboard · AI Chat Anomaly Log</title>
+<meta name="description" content="Counts of reported AI assistant incidents by assistant, behavior type, severity, and month.">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/theme-init.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="inner">
+  <a class="brand" href="./">AI Chat Anomaly Log</a>
+  <nav class="site-nav" aria-label="Main"><ul>
+    <li><a href="./">Home</a></li>
+    <li><a href="browse.html">Browse</a></li>
+    <li><a href="dashboard.html" aria-current="page">Dashboard</a></li>
+    <li><a href="contribute.html">Contribute</a></li>
+  </ul></nav>
+  <button type="button" class="theme-toggle">Theme: auto</button>
+</div></header>
+
+<main id="main">
+  <h1>Dashboard</h1>
+  <p class="lede">Counts of submitted reports. Format examples are excluded. These numbers show what people chose to report, not how often each assistant misbehaves.</p>
+
+  <div class="stats" id="stats" aria-live="polite"><p class="muted">Loading…</p></div>
+
+  <div class="charts">
+    <section class="chart-card" aria-labelledby="h-assistant">
+      <h2 id="h-assistant">By assistant</h2>
+      <p class="sub">Reports per assistant</p>
+      <div class="chart-box"><canvas id="c-assistant" role="img" aria-label="Bar chart of reports per assistant. The data table below has the same numbers."></canvas></div>
+      <details><summary>Show data table</summary><div class="table-wrap" id="t-assistant"></div></details>
+    </section>
+
+    <section class="chart-card" aria-labelledby="h-behavior">
+      <h2 id="h-behavior">By behavior type</h2>
+      <p class="sub">Primary type plus secondary mentions</p>
+      <ul class="legend" id="legend-behavior"></ul>
+      <div class="chart-box"><canvas id="c-behavior" role="img" aria-label="Stacked bar chart of behavior types, primary and secondary mentions. The data table below has the same numbers."></canvas></div>
+      <details><summary>Show data table</summary><div class="table-wrap" id="t-behavior"></div></details>
+    </section>
+
+    <section class="chart-card" aria-labelledby="h-severity">
+      <h2 id="h-severity">By severity</h2>
+      <p class="sub">Reports per severity level</p>
+      <div class="chart-box"><canvas id="c-severity" role="img" aria-label="Bar chart of reports per severity level. The data table below has the same numbers."></canvas></div>
+      <details><summary>Show data table</summary><div class="table-wrap" id="t-severity"></div></details>
+    </section>
+
+    <section class="chart-card" aria-labelledby="h-month">
+      <h2 id="h-month">Monthly trend</h2>
+      <p class="sub">Reports per month, by date the behavior occurred</p>
+      <div class="chart-box"><canvas id="c-month" role="img" aria-label="Bar chart of reports per month. The data table below has the same numbers."></canvas></div>
+      <details><summary>Show data table</summary><div class="table-wrap" id="t-month"></div></details>
+    </section>
+  </div>
+
+  <h2>Assistant × behavior type</h2>
+  <p class="muted">Primary behavior type only.</p>
+  <div class="table-wrap" id="t-pivot"></div>
+</main>
+
+<footer class="site-footer"><div class="inner">
+  <p>Reports of observed behavior, not verified claims about any vendor's product. · Charts by <a href="https://www.chartjs.org/">Chart.js</a> (served locally).</p>
+</div></footer>
+<script src="assets/common.js"></script>
+<script src="vendor/chart.umd.min.js"></script>
+<script src="assets/dashboard.js"></script>
+</body>
+</html>
