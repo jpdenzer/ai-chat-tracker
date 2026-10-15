@@ -16,7 +16,7 @@
     "build:local": "node scripts/build-data.js --with-examples && node scripts/build-site.js",
     "serve": "npm run build:local && node scripts/serve.js",
     "new-entry": "node scripts/new-entry.js",
-    "test": "node --test test/ && node scripts/validate.js"
+    "test": "node --test test/*.test.js && node scripts/validate.js"
   },
   "dependencies": {
     "ajv": "8.20.0",
